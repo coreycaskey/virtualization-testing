@@ -11,6 +11,7 @@
     "preview": "vite preview",
     "prepare": "husky && husky install",
     "format": "prettier --write",
+    "test:noWatch": "echo 'tbd'",
     "tsc": "tsc"
   },
   "dependencies": {
