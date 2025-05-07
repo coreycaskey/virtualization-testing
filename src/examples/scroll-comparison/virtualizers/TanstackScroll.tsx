@@ -1,0 +1,104 @@
+import { Box } from '@mui/material';
+import {
+  VirtualizerOptions,
+  elementScroll,
+  useVirtualizer,
+} from '@tanstack/react-virtual';
+import { FC, useCallback, useRef, useState } from 'react';
+
+import { useItemCountContext } from '~/providers/useItemCountContext';
+import {
+  OVERSCAN_COUNT,
+  VIRTUALIZED_CONTAINER_HEIGHT,
+  VIRTUALIZED_CONTAINER_WIDTH,
+  VIRTUALIZED_SIMPLE_ROW_HEIGHT,
+} from '~/constants';
+import { animate } from '../utils/animate';
+import { ScrollContainer } from '../components/ScrollContainer';
+import { ScrollRow } from '../components/ScrollRow';
+
+interface TanstackScrollProps {}
+
+export const TanstackScroll: FC<TanstackScrollProps> = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const parentRef = useRef<HTMLDivElement | null>(null);
+
+  const { itemCount } = useItemCountContext();
+
+  /*
+    The `useVirtualizer` hook returns an `isScrolling` property, but I forewent it
+    in favor of a state-based approach because the virtualizer's `isScrolling`
+    property was updating multiple times instead of once, as desired
+  */
+  const scrollToFn: VirtualizerOptions<any, any>['scrollToFn'] = useCallback(
+    (offset, canSmooth, instance) => {
+      animate(
+        parentRef.current?.scrollTop ?? 0,
+        offset,
+        (interpolated) => elementScroll(interpolated, canSmooth, instance),
+        () => setIsScrolling(false)
+      );
+    },
+    []
+  );
+
+  const { getTotalSize, getVirtualItems, scrollToIndex } = useVirtualizer({
+    count: itemCount,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => VIRTUALIZED_SIMPLE_ROW_HEIGHT,
+    overscan: OVERSCAN_COUNT,
+    scrollToFn,
+  });
+
+  return (
+    <ScrollContainer
+      cardTitle="Tanstack Virtual"
+      isScrolling={isScrolling}
+      onReset={() => {
+        // reset to top with no animation
+        if (parentRef.current) {
+          parentRef.current.scrollTop = 0;
+        }
+      }}
+      onStartScroll={() => {
+        setIsScrolling(true);
+        scrollToIndex(itemCount - 1);
+      }}
+      profilerId="tanstack-virtual--scroll"
+    >
+      <Box
+        height={VIRTUALIZED_CONTAINER_HEIGHT}
+        ref={parentRef}
+        style={{
+          overflow: 'hidden', // prevent user scroll but allow programmatic scroll
+          borderRadius: '3px',
+        }}
+        width={VIRTUALIZED_CONTAINER_WIDTH}
+      >
+        <Box
+          style={{
+            height: `${getTotalSize()}px`,
+            width: '100%',
+            position: 'relative',
+          }}
+        >
+          {getVirtualItems().map(({ index, key, size, start }) => (
+            <ScrollRow
+              key={key}
+              rowNumber={index + 1}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: `${size}px`,
+                transform: `translateY(${start}px)`,
+              }}
+            />
+          ))}
+        </Box>
+      </Box>
+    </ScrollContainer>
+  );
+};

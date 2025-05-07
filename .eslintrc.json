@@ -17,6 +17,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "import/extensions": "off",
     "import/prefer-default-export": "off",
     "react/function-component-definition": [
       2,

@@ -1,33 +1,32 @@
+import { Stack } from '@mui/material';
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import './App.css';
+
+import { RowCountInput } from './components/RowCountInput';
+import { ExamplesContainer } from './examples/ExamplesContainer';
+import { AccordionStates } from './types';
+
+const INITIAL_ACCORDION_STATES: AccordionStates = {
+  HEAVY: false,
+  SCROLL: false,
+  SIMPLE: false,
+  VARIABLE: false,
+};
 
 export const App = () => {
-  const [count, setCount] = useState(0);
+  const [accordionStates, setAccordionStates] = useState(
+    INITIAL_ACCORDION_STATES
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((c) => c + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Stack gap={3}>
+      <RowCountInput
+        onReset={() => setAccordionStates(INITIAL_ACCORDION_STATES)}
+      />
+
+      <ExamplesContainer
+        accordionStates={accordionStates}
+        setAccordionStates={setAccordionStates}
+      />
+    </Stack>
   );
 };
