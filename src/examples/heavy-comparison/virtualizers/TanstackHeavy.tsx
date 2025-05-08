@@ -1,20 +1,18 @@
-import { Box } from '@mui/material';
-import { useVirtualizer } from '@tanstack/react-virtual';
-import { FC, useRef } from 'react';
+import { Box } from "@mui/material";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { useRef } from "react";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_HEAVY_ROW_HEIGHT,
-} from '~/constants';
-import { HeavyRow } from '../components/HeavyRow';
+} from "~/constants";
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { HeavyRow } from "../components/HeavyRow";
 
-interface TanstackHeavyProps {}
-
-export const TanstackHeavy: FC<TanstackHeavyProps> = () => {
+export const TanstackHeavy = () => {
   const { itemCount } = useItemCountContext();
 
   const parentRef = useRef(null);
@@ -36,15 +34,15 @@ export const TanstackHeavy: FC<TanstackHeavyProps> = () => {
         style={{
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          overflow: 'auto',
-          borderRadius: '3px',
+          overflow: "auto",
+          borderRadius: "3px",
         }}
       >
         <Box
           style={{
             height: `${getTotalSize()}px`,
-            width: '100%',
-            position: 'relative',
+            width: "100%",
+            position: "relative",
           }}
         >
           {getVirtualItems().map(({ index, key, size, start }) => (
@@ -53,10 +51,10 @@ export const TanstackHeavy: FC<TanstackHeavyProps> = () => {
               key={key}
               rowNumber={index + 1}
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
-                width: '100%',
+                width: "100%",
                 height: `${size}px`,
                 transform: `translateY(${start}px)`,
               }}

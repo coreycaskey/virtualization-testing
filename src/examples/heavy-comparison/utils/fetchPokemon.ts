@@ -1,4 +1,4 @@
-import { Pokemon } from '../types';
+import { type Pokemon } from "../types";
 
 const POKEMON_BASE_URL = `https://pokeapi.co/api/v2/pokemon`;
 

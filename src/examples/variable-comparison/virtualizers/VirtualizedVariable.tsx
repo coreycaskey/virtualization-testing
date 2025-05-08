@@ -1,13 +1,12 @@
-import { FC } from 'react';
-import { List, ListRowRenderer } from 'react-virtualized';
+import { List, type ListRowRenderer } from "react-virtualized";
 
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
-} from '~/constants';
-import { VariableRow } from '../components/VariableRow';
+} from "~/constants";
+import { VariableRow } from "../components/VariableRow";
 
 const rowRenderer: ListRowRenderer = ({ key, index, style }) => (
   <VariableRow key={key} rowNumber={index + 1} style={style} />
@@ -17,9 +16,9 @@ interface VirtualizedVariableProps {
   rowHeights: number[];
 }
 
-export const VirtualizedVariable: FC<VirtualizedVariableProps> = ({
+export const VirtualizedVariable = ({
   rowHeights,
-}) => (
+}: VirtualizedVariableProps) => (
   <MountProfiler
     profilerId="react-virtualized--variable"
     title="React Virtualized"
@@ -30,7 +29,7 @@ export const VirtualizedVariable: FC<VirtualizedVariableProps> = ({
       rowCount={rowHeights.length}
       rowHeight={({ index }) => rowHeights[index]}
       rowRenderer={rowRenderer}
-      style={{ borderRadius: '3px' }}
+      style={{ borderRadius: "3px" }}
       width={VIRTUALIZED_CONTAINER_WIDTH}
     />
   </MountProfiler>

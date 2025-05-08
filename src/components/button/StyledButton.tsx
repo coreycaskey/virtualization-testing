@@ -1,22 +1,21 @@
-import { Button, ButtonProps } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Button, type ButtonProps } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-import { BLACK_12, BLACK_28, WHITE_30, WHITE } from '~/constants';
+import { BLACK_12, BLACK_28, WHITE_30, WHITE } from "~/constants";
 
 export const StyledButton = styled((props: ButtonProps) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Button variant="outlined" fullWidth {...props} />
 ))({
-  '&.MuiButton-root': {
+  "&.MuiButton-root": {
     color: WHITE,
     borderColor: WHITE_30,
 
-    '&.Mui-disabled': {
+    "&.Mui-disabled": {
       color: BLACK_28,
       borderColor: BLACK_12,
     },
 
-    '&:hover': {
+    "&:hover": {
       borderColor: WHITE,
       backgroundColor: WHITE_30,
     },

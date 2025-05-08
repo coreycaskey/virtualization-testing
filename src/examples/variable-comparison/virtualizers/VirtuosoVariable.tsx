@@ -1,13 +1,13 @@
-import { FC, useMemo } from 'react';
-import { Virtuoso } from 'react-virtuoso';
+import { useMemo } from "react";
+import { Virtuoso } from "react-virtuoso";
 
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
-} from '~/constants';
-import { VariableRow } from '../components/VariableRow';
+} from "~/constants";
+import { VariableRow } from "../components/VariableRow";
 
 const rowRenderer = (rowHeights: number[]) => (index: number) => (
   <VariableRow
@@ -20,7 +20,7 @@ interface VirtuosoVariableProps {
   rowHeights: number[];
 }
 
-export const VirtuosoVariable: FC<VirtuosoVariableProps> = ({ rowHeights }) => {
+export const VirtuosoVariable = ({ rowHeights }: VirtuosoVariableProps) => {
   /*
     Since `Virtuoso` uses pixels for its `overscan` prop, I calculated the average
     row height to get an estimate to use as a multiple of `OVERSCAN_COUNT` since
@@ -28,7 +28,6 @@ export const VirtuosoVariable: FC<VirtuosoVariableProps> = ({ rowHeights }) => {
   */
   const avgRowHeight = useMemo(() => {
     const totalHeight = rowHeights.reduce((acc, nextHeight) => {
-      // eslint-disable-next-line no-param-reassign
       acc += nextHeight;
       return acc;
     });
@@ -45,7 +44,7 @@ export const VirtuosoVariable: FC<VirtuosoVariableProps> = ({ rowHeights }) => {
         style={{
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          borderRadius: '3px',
+          borderRadius: "3px",
         }}
         totalCount={rowHeights.length}
       />

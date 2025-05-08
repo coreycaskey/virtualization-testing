@@ -1,25 +1,23 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 import {
-  VirtualizerOptions,
+  type VirtualizerOptions,
   elementScroll,
   useVirtualizer,
-} from '@tanstack/react-virtual';
-import { FC, useCallback, useRef, useState } from 'react';
+} from "@tanstack/react-virtual";
+import { useCallback, useRef, useState } from "react";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
+import { useItemCountContext } from "~/context/ItemCountContext";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-} from '~/constants';
-import { animate } from '../utils/animate';
-import { ScrollContainer } from '../components/ScrollContainer';
-import { ScrollRow } from '../components/ScrollRow';
+} from "~/constants";
+import { animate } from "../utils/animate";
+import { ScrollContainer } from "../components/ScrollContainer";
+import { ScrollRow } from "../components/ScrollRow";
 
-interface TanstackScrollProps {}
-
-export const TanstackScroll: FC<TanstackScrollProps> = () => {
+export const TanstackScroll = () => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -31,16 +29,18 @@ export const TanstackScroll: FC<TanstackScrollProps> = () => {
     in favor of a state-based approach because the virtualizer's `isScrolling`
     property was updating multiple times instead of once, as desired
   */
-  const scrollToFn: VirtualizerOptions<any, any>['scrollToFn'] = useCallback(
+  //  TODO:
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const scrollToFn: VirtualizerOptions<any, any>["scrollToFn"] = useCallback(
     (offset, canSmooth, instance) => {
       animate(
         parentRef.current?.scrollTop ?? 0,
         offset,
         (interpolated) => elementScroll(interpolated, canSmooth, instance),
-        () => setIsScrolling(false)
+        () => setIsScrolling(false),
       );
     },
-    []
+    [],
   );
 
   const { getTotalSize, getVirtualItems, scrollToIndex } = useVirtualizer({
@@ -71,16 +71,16 @@ export const TanstackScroll: FC<TanstackScrollProps> = () => {
         height={VIRTUALIZED_CONTAINER_HEIGHT}
         ref={parentRef}
         style={{
-          overflow: 'hidden', // prevent user scroll but allow programmatic scroll
-          borderRadius: '3px',
+          overflow: "hidden", // prevent user scroll but allow programmatic scroll
+          borderRadius: "3px",
         }}
         width={VIRTUALIZED_CONTAINER_WIDTH}
       >
         <Box
           style={{
             height: `${getTotalSize()}px`,
-            width: '100%',
-            position: 'relative',
+            width: "100%",
+            position: "relative",
           }}
         >
           {getVirtualItems().map(({ index, key, size, start }) => (
@@ -88,10 +88,10 @@ export const TanstackScroll: FC<TanstackScrollProps> = () => {
               key={key}
               rowNumber={index + 1}
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
-                width: '100%',
+                width: "100%",
                 height: `${size}px`,
                 transform: `translateY(${start}px)`,
               }}

@@ -1,19 +1,16 @@
-import { FC } from 'react';
-import { FixedSizeList } from 'react-window';
+import { FixedSizeList } from "react-window";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_HEAVY_ROW_HEIGHT,
-} from '~/constants';
-import { HeavyRow } from '../components/HeavyRow';
+} from "~/constants";
+import { HeavyRow } from "../components/HeavyRow";
 
-interface WindowHeavyProps {}
-
-export const WindowHeavy: FC<WindowHeavyProps> = () => {
+export const WindowHeavy = () => {
   const { itemCount } = useItemCountContext();
 
   return (
@@ -23,7 +20,7 @@ export const WindowHeavy: FC<WindowHeavyProps> = () => {
         itemCount={itemCount}
         itemSize={VIRTUALIZED_HEAVY_ROW_HEIGHT}
         overscanCount={OVERSCAN_COUNT}
-        style={{ borderRadius: '3px' }}
+        style={{ borderRadius: "3px" }}
         useIsScrolling
         width={VIRTUALIZED_CONTAINER_WIDTH}
       >

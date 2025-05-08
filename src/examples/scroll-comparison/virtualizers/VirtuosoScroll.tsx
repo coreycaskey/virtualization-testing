@@ -1,17 +1,17 @@
-import { FC, useRef, useState } from 'react';
-import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
+import { useRef, useState } from "react";
+import { Virtuoso, type VirtuosoHandle } from "react-virtuoso";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
+import { useItemCountContext } from "~/context/ItemCountContext";
 import {
   COUNT_SIMPLE_ROWS_SHOWN,
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-} from '~/constants';
-import { ScrollContainer } from '../components/ScrollContainer';
-import { ScrollRow } from '../components/ScrollRow';
-import { animate } from '../utils/animate';
+} from "~/constants";
+import { ScrollContainer } from "../components/ScrollContainer";
+import { ScrollRow } from "../components/ScrollRow";
+import { animate } from "../utils/animate";
 
 const rowRenderer = (index: number) => (
   <ScrollRow
@@ -23,9 +23,7 @@ const rowRenderer = (index: number) => (
   />
 );
 
-interface VirtuosoScrollProps {}
-
-export const VirtuosoScroll: FC<VirtuosoScrollProps> = () => {
+export const VirtuosoScroll = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -56,7 +54,7 @@ export const VirtuosoScroll: FC<VirtuosoScrollProps> = () => {
             setScrollTop(interpolated);
             listRef.current?.scrollTo({ top: interpolated });
           },
-          () => setIsScrolling(false)
+          () => setIsScrolling(false),
         );
       }}
       profilerId="react-virtuoso--scroll"
@@ -69,8 +67,8 @@ export const VirtuosoScroll: FC<VirtuosoScrollProps> = () => {
         style={{
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          overflowY: 'hidden', // prevent user scroll but allow programmatic scroll
-          borderRadius: '3px',
+          overflowY: "hidden", // prevent user scroll but allow programmatic scroll
+          borderRadius: "3px",
         }}
         totalCount={itemCount}
       />

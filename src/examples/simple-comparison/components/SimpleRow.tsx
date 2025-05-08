@@ -1,13 +1,13 @@
-import { Box, Typography } from '@mui/material';
-import { CSSProperties, FC } from 'react';
-import { PURPLE_100, WHITE } from '~/constants';
+import { Box, Typography } from "@mui/material";
+import { type CSSProperties } from "react";
+import { PURPLE_100, WHITE } from "~/constants";
 
 interface SimpleRowProps {
   rowNumber: number;
   style: CSSProperties;
 }
 
-export const SimpleRow: FC<SimpleRowProps> = ({ rowNumber, style }) => (
+export const SimpleRow = ({ rowNumber, style }: SimpleRowProps) => (
   <Box
     display="flex"
     justifyContent="center"

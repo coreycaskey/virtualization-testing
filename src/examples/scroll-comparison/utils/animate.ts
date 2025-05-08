@@ -16,7 +16,7 @@ export const animate = (
   end: number,
   onUpdate: (interpolated: number) => void,
   onComplete: () => void,
-  duration = 1000
+  duration = 1000,
 ) => {
   const startTime = performance.now();
 

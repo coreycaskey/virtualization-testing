@@ -1,13 +1,13 @@
-import { Box, Typography } from '@mui/material';
-import { CSSProperties, FC } from 'react';
-import { PURPLE_100, WHITE } from '~/constants';
+import { Box, Typography } from "@mui/material";
+import { type CSSProperties } from "react";
+import { PURPLE_100, WHITE } from "~/constants";
 
 interface VariableRowProps {
   rowNumber: number;
   style: CSSProperties;
 }
 
-export const VariableRow: FC<VariableRowProps> = ({ rowNumber, style }) => (
+export const VariableRow = ({ rowNumber, style }: VariableRowProps) => (
   <Box
     display="flex"
     justifyContent="center"

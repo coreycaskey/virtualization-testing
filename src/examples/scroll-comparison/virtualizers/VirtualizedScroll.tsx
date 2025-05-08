@@ -1,25 +1,23 @@
-import { FC, useState } from 'react';
-import { List, ListRowRenderer } from 'react-virtualized';
+import { useState } from "react";
+import { List, type ListRowRenderer } from "react-virtualized";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
 import {
   COUNT_SIMPLE_ROWS_SHOWN,
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-} from '~/constants';
-import { ScrollContainer } from '../components/ScrollContainer';
-import { ScrollRow } from '../components/ScrollRow';
-import { animate } from '../utils/animate';
+} from "~/constants";
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { ScrollContainer } from "../components/ScrollContainer";
+import { ScrollRow } from "../components/ScrollRow";
+import { animate } from "../utils/animate";
 
 const rowRenderer: ListRowRenderer = ({ key, index, style }) => (
   <ScrollRow key={key} rowNumber={index + 1} style={style} />
 );
 
-interface VirtualizedScrollProps {}
-
-export const VirtualizedScroll: FC<VirtualizedScrollProps> = () => {
+export const VirtualizedScroll = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -39,7 +37,7 @@ export const VirtualizedScroll: FC<VirtualizedScrollProps> = () => {
           scrollTop,
           (itemCount - COUNT_SIMPLE_ROWS_SHOWN) * VIRTUALIZED_SIMPLE_ROW_HEIGHT,
           setScrollTop,
-          () => setIsScrolling(false)
+          () => setIsScrolling(false),
         );
       }}
       profilerId="react-virtualized--scroll"
@@ -51,7 +49,7 @@ export const VirtualizedScroll: FC<VirtualizedScrollProps> = () => {
         rowCount={itemCount}
         rowRenderer={rowRenderer}
         scrollTop={scrollTop}
-        style={{ overflowY: 'hidden', borderRadius: '3px' }} // prevent user scroll but allow programmatic scroll
+        style={{ overflowY: "hidden", borderRadius: "3px" }} // prevent user scroll but allow programmatic scroll
         width={VIRTUALIZED_CONTAINER_WIDTH}
       />
     </ScrollContainer>

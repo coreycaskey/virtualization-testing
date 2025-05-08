@@ -1,0 +1,36 @@
+// for tooling like Vite/Vitest
+{
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": { "~/*": ["src/*"] },
+    "types": ["node", "vitest/globals"],
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ESNext", // use ES2020 if not using a node version >20
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*", // ensures imports from non-test files works
+    "vite.config.ts",
+    // in case you choose to move these outside src
+    "**/setupTests.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
+}

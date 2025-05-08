@@ -1,25 +1,25 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Box, CircularProgress, Typography } from "@mui/material";
+import { type Dispatch, type SetStateAction } from "react";
 
-import { StyledAccordion } from '~/components/accordion/StyledAccordion';
-import { StyledAccordionDetails } from '~/components/accordion/StyledAccordionDetails';
-import { StyledAccordionSummary } from '~/components/accordion/StyledAccordionSummary';
-import { AccordionStates } from '~/types';
-import { HeavyComparison } from './heavy-comparison';
-import { ScrollComparison } from './scroll-comparison';
-import { SimpleComparison } from './simple-comparison';
-import { VariableComparison } from './variable-comparison';
-import { useItemCountContext } from '~/providers/useItemCountContext';
+import { StyledAccordion } from "~/components/accordion/StyledAccordion";
+import { StyledAccordionDetails } from "~/components/accordion/StyledAccordionDetails";
+import { StyledAccordionSummary } from "~/components/accordion/StyledAccordionSummary";
+import { type AccordionStates } from "~/types";
+import { HeavyComparison } from "./heavy-comparison";
+import { ScrollComparison } from "./scroll-comparison";
+import { SimpleComparison } from "./simple-comparison";
+import { VariableComparison } from "./variable-comparison";
+import { useItemCountContext } from "~/context/ItemCountContext";
 
 interface ExamplesContainerProps {
   accordionStates: AccordionStates;
   setAccordionStates: Dispatch<SetStateAction<AccordionStates>>;
 }
 
-export const ExamplesContainer: FC<ExamplesContainerProps> = ({
+export const ExamplesContainer = ({
   accordionStates: { HEAVY, SCROLL, SIMPLE, VARIABLE },
   setAccordionStates,
-}) => {
+}: ExamplesContainerProps) => {
   const { itemCount } = useItemCountContext();
 
   return (
@@ -51,7 +51,7 @@ export const ExamplesContainer: FC<ExamplesContainerProps> = ({
       >
         <StyledAccordionSummary>
           <Typography variant="button">
-            Heavy Virtualization Comparison{' '}
+            Heavy Virtualization Comparison{" "}
           </Typography>
         </StyledAccordionSummary>
 

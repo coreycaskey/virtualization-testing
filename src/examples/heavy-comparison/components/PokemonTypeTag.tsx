@@ -1,13 +1,12 @@
-import { Box, Typography } from '@mui/material';
-import { FC } from 'react';
+import { Box, Typography } from "@mui/material";
 
-import { PokemonType, POKEMON_TYPE_COLORS } from '../types';
+import { type PokemonType, POKEMON_TYPE_COLORS } from "../types";
 
 interface PokemonTypeTagProps {
   type: PokemonType;
 }
 
-export const PokemonTypeTag: FC<PokemonTypeTagProps> = ({ type }) => {
+export const PokemonTypeTag = ({ type }: PokemonTypeTagProps) => {
   return (
     <Box
       display="flex"

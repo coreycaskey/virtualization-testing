@@ -1,15 +1,15 @@
-import { FC, useState } from 'react';
-import { Virtuoso } from 'react-virtuoso';
+import { useState } from "react";
+import { Virtuoso } from "react-virtuoso";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_HEAVY_ROW_HEIGHT,
-} from '~/constants';
-import { HeavyRow } from '../components/HeavyRow';
+} from "~/constants";
+import { HeavyRow } from "../components/HeavyRow";
 
 const rowRenderer = (isScrolling: boolean) => (index: number) => (
   <HeavyRow
@@ -20,9 +20,7 @@ const rowRenderer = (isScrolling: boolean) => (index: number) => (
   />
 );
 
-interface VirtuosoHeavyProps {}
-
-export const VirtuosoHeavy: FC<VirtuosoHeavyProps> = () => {
+export const VirtuosoHeavy = () => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   const { itemCount } = useItemCountContext();
@@ -37,7 +35,7 @@ export const VirtuosoHeavy: FC<VirtuosoHeavyProps> = () => {
         style={{
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          borderRadius: '3px',
+          borderRadius: "3px",
         }}
         totalCount={itemCount}
       />

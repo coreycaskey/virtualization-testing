@@ -1,21 +1,19 @@
-import { FC, useRef, useState } from 'react';
-import { FixedSizeList } from 'react-window';
+import { useRef, useState } from "react";
+import { FixedSizeList } from "react-window";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
+import { useItemCountContext } from "~/context/ItemCountContext";
 import {
   COUNT_SIMPLE_ROWS_SHOWN,
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-} from '~/constants';
-import { ScrollContainer } from '../components/ScrollContainer';
-import { ScrollRow } from '../components/ScrollRow';
-import { animate } from '../utils/animate';
+} from "~/constants";
+import { ScrollContainer } from "../components/ScrollContainer";
+import { ScrollRow } from "../components/ScrollRow";
+import { animate } from "../utils/animate";
 
-interface WindowScrollProps {}
-
-export const WindowScroll: FC<WindowScrollProps> = () => {
+export const WindowScroll = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -41,7 +39,7 @@ export const WindowScroll: FC<WindowScrollProps> = () => {
             setScrollTop(interpolated);
             listRef.current?.scrollTo(interpolated);
           },
-          () => setIsScrolling(false)
+          () => setIsScrolling(false),
         );
       }}
       profilerId="react-window--scroll"
@@ -54,7 +52,7 @@ export const WindowScroll: FC<WindowScrollProps> = () => {
         ref={(list) => {
           listRef.current = list;
         }}
-        style={{ overflowY: 'hidden', borderRadius: '3px' }} // prevent user scroll but allow programmatic scroll
+        style={{ overflowY: "hidden", borderRadius: "3px" }} // prevent user scroll but allow programmatic scroll
         width={VIRTUALIZED_CONTAINER_WIDTH}
       >
         {({ index, style }) => (

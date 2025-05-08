@@ -1,14 +1,14 @@
-import { Box, Typography } from '@mui/material';
-import { CSSProperties, FC } from 'react';
+import { Box, Typography } from "@mui/material";
+import { type CSSProperties } from "react";
 
-import { PURPLE_100, WHITE } from '~/constants';
+import { PURPLE_100, WHITE } from "~/constants";
 
 interface ScrollRowProps {
   rowNumber: number;
   style: CSSProperties;
 }
 
-export const ScrollRow: FC<ScrollRowProps> = ({ rowNumber, style }) => (
+export const ScrollRow = ({ rowNumber, style }: ScrollRowProps) => (
   <Box
     display="flex"
     justifyContent="center"

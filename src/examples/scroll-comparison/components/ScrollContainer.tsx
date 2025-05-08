@@ -1,9 +1,9 @@
-import { Stack } from '@mui/material';
-import { FC, PropsWithChildren, useRef, useState } from 'react';
+import { Stack } from "@mui/material";
+import { type PropsWithChildren, useRef, useState } from "react";
 
-import { ScrollProfiler } from '~/components/profilers/ScrollProfiler';
-import { ButtonContainer } from './ButtonContainer';
-import { ProfilerTracker } from '~/types';
+import { ScrollProfiler } from "~/components/profilers/ScrollProfiler";
+import { ButtonContainer } from "./ButtonContainer";
+import { type ProfilerTracker } from "~/types";
 
 const INITIAL_PROFILER_TRACKER: ProfilerTracker = {
   numUpdates: 0,
@@ -18,14 +18,14 @@ interface ScrollContainerProps extends PropsWithChildren {
   profilerId: string;
 }
 
-export const ScrollContainer: FC<ScrollContainerProps> = ({
+export const ScrollContainer = ({
   cardTitle,
   children,
   isScrolling,
   onReset,
   onStartScroll,
   profilerId,
-}) => {
+}: ScrollContainerProps) => {
   const [avgScroll, setAvgScroll] = useState(0);
 
   const profilerTracker = useRef(INITIAL_PROFILER_TRACKER);

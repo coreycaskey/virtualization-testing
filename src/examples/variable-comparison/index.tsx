@@ -1,15 +1,13 @@
-import { Stack } from '@mui/material';
-import { FC, useMemo } from 'react';
+import { Stack } from "@mui/material";
+import { useMemo } from "react";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
-import { TanstackVariable } from './virtualizers/TanstackVariable';
-import { VirtualizedVariable } from './virtualizers/VirtualizedVariable';
-import { VirtuosoVariable } from './virtualizers/VirtuosoVariable';
-import { WindowVariable } from './virtualizers/WindowVariable';
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { TanstackVariable } from "./virtualizers/TanstackVariable";
+import { VirtualizedVariable } from "./virtualizers/VirtualizedVariable";
+import { VirtuosoVariable } from "./virtualizers/VirtuosoVariable";
+import { WindowVariable } from "./virtualizers/WindowVariable";
 
-interface VariableComparisonProps {}
-
-export const VariableComparison: FC<VariableComparisonProps> = () => {
+export const VariableComparison = () => {
   const { itemCount } = useItemCountContext();
 
   /*
@@ -21,7 +19,7 @@ export const VariableComparison: FC<VariableComparisonProps> = () => {
       new Array(itemCount)
         .fill(true)
         .map(() => 35 + Math.round(Math.random() * 100)),
-    []
+    [itemCount],
   );
 
   return (

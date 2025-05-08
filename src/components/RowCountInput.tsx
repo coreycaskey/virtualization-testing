@@ -1,14 +1,14 @@
-import { Stack, Typography } from '@mui/material';
-import { FC, useState } from 'react';
-import { useItemCountContext } from '../providers/useItemCountContext';
-import { StyledButton } from '~/components/button/StyledButton';
-import { StyledInput } from './input/StyledInput';
+import { Stack, Typography } from "@mui/material";
+import { useState } from "react";
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { StyledButton } from "~/components/button/StyledButton";
+import { StyledInput } from "./input/StyledInput";
 
 interface RowCountInputProps {
   onReset: () => void;
 }
 
-export const RowCountInput: FC<RowCountInputProps> = ({ onReset }) => {
+export const RowCountInput = ({ onReset }: RowCountInputProps) => {
   /*
     This local state is ONLY to be used to make the input component controlled
     and to trigger updates such that the `Apply` button can be enabled

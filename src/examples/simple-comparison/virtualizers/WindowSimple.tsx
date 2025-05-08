@@ -1,19 +1,16 @@
-import { FC } from 'react';
-import { FixedSizeList } from 'react-window';
+import { FixedSizeList } from "react-window";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-} from '~/constants';
-import { SimpleRow } from '../components/SimpleRow';
+} from "~/constants";
+import { SimpleRow } from "../components/SimpleRow";
 
-interface WindowSimpleProps {}
-
-export const WindowSimple: FC<WindowSimpleProps> = () => {
+export const WindowSimple = () => {
   const { itemCount } = useItemCountContext();
 
   return (
@@ -23,7 +20,7 @@ export const WindowSimple: FC<WindowSimpleProps> = () => {
         itemCount={itemCount}
         itemSize={VIRTUALIZED_SIMPLE_ROW_HEIGHT}
         overscanCount={OVERSCAN_COUNT}
-        style={{ borderRadius: '3px' }}
+        style={{ borderRadius: "3px" }}
         width={VIRTUALIZED_CONTAINER_WIDTH}
       >
         {({ index, style }) => (

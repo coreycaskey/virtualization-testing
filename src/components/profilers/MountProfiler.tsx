@@ -1,17 +1,17 @@
-import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
-import { FC, Profiler, PropsWithChildren, useState } from 'react';
+import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { Profiler, type PropsWithChildren, useState } from "react";
 
 interface MountProfilerProps extends PropsWithChildren {
   profilerId: string;
   title: string;
 }
 
-export const MountProfiler: FC<MountProfilerProps> = ({
+export const MountProfiler = ({
   children,
   profilerId,
   title,
-}) => {
-  const [time, setTime] = useState('');
+}: MountProfilerProps) => {
+  const [time, setTime] = useState("");
 
   return (
     <Card>
@@ -28,14 +28,14 @@ export const MountProfiler: FC<MountProfilerProps> = ({
           id={profilerId}
           onRender={(_, phase, actualDuration) => {
             // only care about mounting phase
-            if (phase === 'mount') {
+            if (phase === "mount") {
               setTime(`${actualDuration.toFixed(4)} ms`);
             }
           }}
         >
           <Box
             display="flex"
-            sx={{ border: '1px solid lightgray', borderRadius: '4px' }}
+            sx={{ border: "1px solid lightgray", borderRadius: "4px" }}
           >
             {children}
           </Box>

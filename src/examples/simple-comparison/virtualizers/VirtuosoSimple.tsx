@@ -1,15 +1,14 @@
-import { FC } from 'react';
-import { Virtuoso } from 'react-virtuoso';
+import { Virtuoso } from "react-virtuoso";
 
-import { useItemCountContext } from '~/providers/useItemCountContext';
-import { MountProfiler } from '~/components/profilers/MountProfiler';
+import { useItemCountContext } from "~/context/ItemCountContext";
+import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-} from '~/constants';
-import { SimpleRow } from '../components/SimpleRow';
+} from "~/constants";
+import { SimpleRow } from "../components/SimpleRow";
 
 const rowRenderer = (index: number) => (
   <SimpleRow
@@ -21,9 +20,7 @@ const rowRenderer = (index: number) => (
   />
 );
 
-interface VirtuosoSimpleProps {}
-
-export const VirtuosoSimple: FC<VirtuosoSimpleProps> = () => {
+export const VirtuosoSimple = () => {
   const { itemCount } = useItemCountContext();
 
   return (
@@ -35,7 +32,7 @@ export const VirtuosoSimple: FC<VirtuosoSimpleProps> = () => {
         style={{
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          borderRadius: '3px',
+          borderRadius: "3px",
         }}
         totalCount={itemCount}
       />

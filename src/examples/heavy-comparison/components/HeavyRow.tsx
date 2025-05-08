@@ -1,4 +1,4 @@
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import {
   Avatar,
   Box,
@@ -6,13 +6,13 @@ import {
   IconButton,
   Stack,
   Typography,
-} from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
-import { CSSProperties, FC, ReactNode } from 'react';
+} from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import { type CSSProperties, type ReactNode } from "react";
 
-import { PURPLE_100, VIRTUALIZED_HEAVY_ROW_HEIGHT, WHITE } from '~/constants';
-import { fetchPokemon } from '../utils/fetchPokemon';
-import { PokemonTypeTag } from './PokemonTypeTag';
+import { PURPLE_100, VIRTUALIZED_HEAVY_ROW_HEIGHT, WHITE } from "~/constants";
+import { fetchPokemon } from "../utils/fetchPokemon";
+import { PokemonTypeTag } from "./PokemonTypeTag";
 
 interface HeavyRowProps {
   isScrolling: boolean; // indicator to prevent query spamming of pokemon api
@@ -21,14 +21,14 @@ interface HeavyRowProps {
   virtualizer: string; // differentiates cache keys for each virtualization approach
 }
 
-export const HeavyRow: FC<HeavyRowProps> = ({
+export const HeavyRow = ({
   isScrolling,
   rowNumber,
   style,
   virtualizer,
-}) => {
+}: HeavyRowProps) => {
   const { data, isLoading } = useQuery({
-    queryKey: [virtualizer, 'pokemon', rowNumber],
+    queryKey: [virtualizer, "pokemon", rowNumber],
     queryFn: () => fetchPokemon(rowNumber),
     enabled: !isScrolling,
   });
@@ -41,7 +41,7 @@ export const HeavyRow: FC<HeavyRowProps> = ({
         <Avatar
           alt={data.name}
           src={data.sprites.front_default}
-          sx={{ width: '40px', height: '40px' }}
+          sx={{ width: "40px", height: "40px" }}
         />
 
         <Stack justifyContent="space-between" alignItems="flex-start" flex={1}>
@@ -61,7 +61,7 @@ export const HeavyRow: FC<HeavyRowProps> = ({
               const audio = new Audio(data.cries.latest ?? data.cries.legacy);
 
               audio.volume = 0.2;
-              audio.play();
+              void audio.play();
             }}
             size="small"
           >
