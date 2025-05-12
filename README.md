@@ -15,10 +15,22 @@ This application benchmarks and visually demonstrates the performance of differe
 
 The project includes implementations from the following libraries:
 
-- **react-window**: A lightweight virtualization library from Brian Vaughn, optimized for fixed-size rows and columns.
-- **react-virtual**: A modern library focused on flexibility and performance, especially with dynamic sizes and large data sets.
-- **@tanstack/react-virtual**: The latest evolution of `react-virtual`, designed by Tanner Linsley with improved ergonomics and integration for modern React.
-- **react-virtuoso**: A high-level library that provides more advanced features out of the box, such as automatic size detection and grouped rows.
+- **react-window**
+  - A lightweight virtualization library from Brian Vaughn, optimized for fixed-size rows and columns.
+  - [Docs](https://react-window.now.sh/)
+  - [GitHub](https://github.com/bvaughn/react-window)
+- **react-virtualized**
+  - A modern library focused on flexibility and performance, especially with dynamic sizes and large data sets.
+  - [Docs](http://bvaughn.github.io/react-virtualized/)
+  - [GitHub](https://github.com/bvaughn/react-virtualized)
+- **@tanstack/react-virtual**
+  - The latest evolution of `react-virtual`, designed by Tanner Linsley with improved ergonomics and integration for modern React.
+  - [Docs](https://tanstack.com/virtual/latest/docs/introduction)
+  - [GitHub](https://github.com/tanstack/virtual)
+- **react-virtuoso**
+  - A high-level library that provides more advanced features out of the box, such as automatic size detection and grouped rows.
+  - [Docs](https://virtuoso.dev/)
+  - [GitHub](https://github.com/petyosi/react-virtuoso)
 
 Each library is tested in comparable scenarios to showcase strengths, weaknesses, and usability trade-offs.
 
