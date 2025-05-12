@@ -19,7 +19,7 @@ export const MountProfiler = ({
         <Stack alignItems="center" gap={1} marginBottom={2}>
           <Typography variant="h5">{title}</Typography>
 
-          <Typography variant="body2" color="text.secondary">
+          <Typography color="text.secondary" variant="body2">
             Time: {time}
           </Typography>
         </Stack>

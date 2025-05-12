@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import { useItemCountContext } from "~/context/ItemCountContext";
 import { StyledButton } from "~/components/button/StyledButton";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { StyledInput } from "./input/StyledInput";
 
 interface RowCountInputProps {
@@ -9,13 +9,9 @@ interface RowCountInputProps {
 }
 
 export const RowCountInput = ({ onReset }: RowCountInputProps) => {
-  /*
-    This local state is ONLY to be used to make the input component controlled
-    and to trigger updates such that the `Apply` button can be enabled
-  */
-  const [inputValue, setInputValue] = useState(0);
-
   const { itemCount, setItemCount } = useItemCountContext();
+
+  const [inputValue, setInputValue] = useState(0);
 
   return (
     <Stack gap={1} alignItems="flex-start">
@@ -52,8 +48,8 @@ export const RowCountInput = ({ onReset }: RowCountInputProps) => {
         </StyledButton>
 
         <StyledButton
-          fullWidth
           disabled={!itemCount}
+          fullWidth
           onClick={() => {
             setInputValue(0);
             setItemCount(0);

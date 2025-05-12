@@ -1,6 +1,5 @@
 import { FixedSizeList } from "react-window";
 
-import { useItemCountContext } from "~/context/ItemCountContext";
 import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
@@ -8,6 +7,7 @@ import {
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_HEAVY_ROW_HEIGHT,
 } from "~/constants";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { HeavyRow } from "../components/HeavyRow";
 
 export const WindowHeavy = () => {

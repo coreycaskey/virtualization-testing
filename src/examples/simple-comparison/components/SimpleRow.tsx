@@ -9,12 +9,12 @@ interface SimpleRowProps {
 
 export const SimpleRow = ({ rowNumber, style }: SimpleRowProps) => (
   <Box
+    alignItems="center"
     display="flex"
     justifyContent="center"
-    alignItems="center"
     sx={{
-      ...style,
       backgroundColor: rowNumber % 2 === 0 ? PURPLE_100 : WHITE,
+      ...style,
     }}
   >
     <Typography variant="overline">List Item {rowNumber}</Typography>

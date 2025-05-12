@@ -2,8 +2,8 @@ import { Stack } from "@mui/material";
 import { type PropsWithChildren, useRef, useState } from "react";
 
 import { ScrollProfiler } from "~/components/profilers/ScrollProfiler";
-import { ButtonContainer } from "./ButtonContainer";
 import { type ProfilerTracker } from "~/types";
+import { ButtonContainer } from "./ButtonContainer";
 
 const INITIAL_PROFILER_TRACKER: ProfilerTracker = {
   numUpdates: 0,

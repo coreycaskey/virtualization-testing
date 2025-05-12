@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { type CSSProperties } from "react";
+
 import { PURPLE_100, WHITE } from "~/constants";
 
 interface VariableRowProps {
@@ -9,12 +10,12 @@ interface VariableRowProps {
 
 export const VariableRow = ({ rowNumber, style }: VariableRowProps) => (
   <Box
+    alignItems="center"
     display="flex"
     justifyContent="center"
-    alignItems="center"
     sx={{
-      ...style,
       backgroundColor: rowNumber % 2 === 0 ? PURPLE_100 : WHITE,
+      ...style,
     }}
   >
     <Typography variant="overline">List Item {rowNumber}</Typography>

@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { FixedSizeList } from "react-window";
 
-import { useItemCountContext } from "~/context/ItemCountContext";
 import {
   COUNT_SIMPLE_ROWS_SHOWN,
   OVERSCAN_COUNT,
@@ -9,17 +8,18 @@ import {
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
 } from "~/constants";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { ScrollContainer } from "../components/ScrollContainer";
 import { ScrollRow } from "../components/ScrollRow";
 import { animate } from "../utils/animate";
 
 export const WindowScroll = () => {
+  const { itemCount } = useItemCountContext();
+
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
   const listRef = useRef<FixedSizeList | null>(null);
-
-  const { itemCount } = useItemCountContext();
 
   return (
     <ScrollContainer
@@ -52,7 +52,7 @@ export const WindowScroll = () => {
         ref={(list) => {
           listRef.current = list;
         }}
-        style={{ overflowY: "hidden", borderRadius: "3px" }} // prevent user scroll but allow programmatic scroll
+        style={{ borderRadius: "3px", overflowY: "hidden" }} // prevent user scroll but allow programmatic scroll
         width={VIRTUALIZED_CONTAINER_WIDTH}
       >
         {({ index, style }) => (

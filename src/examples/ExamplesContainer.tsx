@@ -4,12 +4,12 @@ import { type Dispatch, type SetStateAction } from "react";
 import { StyledAccordion } from "~/components/accordion/StyledAccordion";
 import { StyledAccordionDetails } from "~/components/accordion/StyledAccordionDetails";
 import { StyledAccordionSummary } from "~/components/accordion/StyledAccordionSummary";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { type AccordionStates } from "~/types";
 import { HeavyComparison } from "./heavy-comparison";
 import { ScrollComparison } from "./scroll-comparison";
 import { SimpleComparison } from "./simple-comparison";
 import { VariableComparison } from "./variable-comparison";
-import { useItemCountContext } from "~/context/ItemCountContext";
 
 interface ExamplesContainerProps {
   accordionStates: AccordionStates;

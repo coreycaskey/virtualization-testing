@@ -19,8 +19,8 @@ export const TanstackVariable = ({ rowHeights }: TanstackVariableProps) => {
 
   const { getTotalSize, getVirtualItems } = useVirtualizer({
     count: rowHeights.length,
-    getScrollElement: () => parentRef.current,
     estimateSize: (i) => rowHeights[i],
+    getScrollElement: () => parentRef.current,
     overscan: OVERSCAN_COUNT,
   });
 
@@ -32,17 +32,17 @@ export const TanstackVariable = ({ rowHeights }: TanstackVariableProps) => {
       <Box
         ref={parentRef}
         style={{
-          height: VIRTUALIZED_CONTAINER_HEIGHT,
-          width: VIRTUALIZED_CONTAINER_WIDTH,
-          overflow: "auto",
           borderRadius: "3px",
+          height: VIRTUALIZED_CONTAINER_HEIGHT,
+          overflow: "auto",
+          width: VIRTUALIZED_CONTAINER_WIDTH,
         }}
       >
         <Box
           style={{
             height: `${getTotalSize()}px`,
-            width: "100%",
             position: "relative",
+            width: "100%",
           }}
         >
           {getVirtualItems().map(({ index, key, size, start }) => (
@@ -50,12 +50,12 @@ export const TanstackVariable = ({ rowHeights }: TanstackVariableProps) => {
               key={key}
               rowNumber={index + 1}
               style={{
+                height: `${size}px`,
+                left: 0,
                 position: "absolute",
                 top: 0,
-                left: 0,
-                width: "100%",
-                height: `${size}px`,
                 transform: `translateY(${start}px)`,
+                width: "100%",
               }}
             />
           ))}

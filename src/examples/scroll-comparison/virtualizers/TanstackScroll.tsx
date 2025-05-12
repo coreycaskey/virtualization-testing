@@ -6,23 +6,23 @@ import {
 } from "@tanstack/react-virtual";
 import { useCallback, useRef, useState } from "react";
 
-import { useItemCountContext } from "~/context/ItemCountContext";
 import {
   OVERSCAN_COUNT,
   VIRTUALIZED_CONTAINER_HEIGHT,
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
 } from "~/constants";
-import { animate } from "../utils/animate";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { ScrollContainer } from "../components/ScrollContainer";
 import { ScrollRow } from "../components/ScrollRow";
+import { animate } from "../utils/animate";
 
 export const TanstackScroll = () => {
+  const { itemCount } = useItemCountContext();
+
   const [isScrolling, setIsScrolling] = useState(false);
 
   const parentRef = useRef<HTMLDivElement | null>(null);
-
-  const { itemCount } = useItemCountContext();
 
   /*
     The `useVirtualizer` hook returns an `isScrolling` property, but I forewent it
@@ -45,8 +45,8 @@ export const TanstackScroll = () => {
 
   const { getTotalSize, getVirtualItems, scrollToIndex } = useVirtualizer({
     count: itemCount,
-    getScrollElement: () => parentRef.current,
     estimateSize: () => VIRTUALIZED_SIMPLE_ROW_HEIGHT,
+    getScrollElement: () => parentRef.current,
     overscan: OVERSCAN_COUNT,
     scrollToFn,
   });
@@ -71,16 +71,16 @@ export const TanstackScroll = () => {
         height={VIRTUALIZED_CONTAINER_HEIGHT}
         ref={parentRef}
         style={{
-          overflow: "hidden", // prevent user scroll but allow programmatic scroll
           borderRadius: "3px",
+          overflow: "hidden", // prevent user scroll but allow programmatic scroll
         }}
         width={VIRTUALIZED_CONTAINER_WIDTH}
       >
         <Box
           style={{
             height: `${getTotalSize()}px`,
-            width: "100%",
             position: "relative",
+            width: "100%",
           }}
         >
           {getVirtualItems().map(({ index, key, size, start }) => (
@@ -88,12 +88,12 @@ export const TanstackScroll = () => {
               key={key}
               rowNumber={index + 1}
               style={{
+                left: 0,
+                height: `${size}px`,
                 position: "absolute",
                 top: 0,
-                left: 0,
-                width: "100%",
-                height: `${size}px`,
                 transform: `translateY(${start}px)`,
+                width: "100%",
               }}
             />
           ))}

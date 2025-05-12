@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useRef } from "react";
 
-import { useItemCountContext } from "~/context/ItemCountContext";
 import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
@@ -10,6 +9,7 @@ import {
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
 } from "~/constants";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { SimpleRow } from "../components/SimpleRow";
 
 export const TanstackSimple = () => {
@@ -21,7 +21,7 @@ export const TanstackSimple = () => {
     count: itemCount,
     getScrollElement: () => parentRef.current,
     estimateSize: () => VIRTUALIZED_SIMPLE_ROW_HEIGHT,
-    overscan: OVERSCAN_COUNT,
+    overscan: OVERSCAN_COUNT, // TODO: add an input for this
   });
 
   return (
@@ -32,17 +32,17 @@ export const TanstackSimple = () => {
       <Box
         ref={parentRef}
         style={{
-          height: VIRTUALIZED_CONTAINER_HEIGHT,
-          width: VIRTUALIZED_CONTAINER_WIDTH,
-          overflow: "auto",
           borderRadius: "3px",
+          height: VIRTUALIZED_CONTAINER_HEIGHT,
+          overflow: "auto",
+          width: VIRTUALIZED_CONTAINER_WIDTH,
         }}
       >
         <Box
           style={{
             height: `${getTotalSize()}px`,
-            width: "100%",
             position: "relative",
+            width: "100%",
           }}
         >
           {getVirtualItems().map(({ index, key, size, start }) => (
@@ -50,12 +50,12 @@ export const TanstackSimple = () => {
               key={key}
               rowNumber={index + 1}
               style={{
+                height: `${size}px`,
+                left: 0,
                 position: "absolute",
                 top: 0,
-                left: 0,
-                width: "100%",
-                height: `${size}px`,
                 transform: `translateY(${start}px)`,
+                width: "100%",
               }}
             />
           ))}

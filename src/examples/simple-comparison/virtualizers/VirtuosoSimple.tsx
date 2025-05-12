@@ -1,6 +1,5 @@
 import { Virtuoso } from "react-virtuoso";
 
-import { useItemCountContext } from "~/context/ItemCountContext";
 import { MountProfiler } from "~/components/profilers/MountProfiler";
 import {
   OVERSCAN_COUNT,
@@ -8,6 +7,7 @@ import {
   VIRTUALIZED_CONTAINER_WIDTH,
   VIRTUALIZED_SIMPLE_ROW_HEIGHT,
 } from "~/constants";
+import { useItemCountContext } from "~/context/ItemCountContext";
 import { SimpleRow } from "../components/SimpleRow";
 
 const rowRenderer = (index: number) => (
@@ -30,9 +30,9 @@ export const VirtuosoSimple = () => {
         // overscan is based on pixels rather than count
         overscan={VIRTUALIZED_SIMPLE_ROW_HEIGHT * OVERSCAN_COUNT}
         style={{
+          borderRadius: "3px",
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          borderRadius: "3px",
         }}
         totalCount={itemCount}
       />

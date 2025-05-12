@@ -23,7 +23,7 @@ export const VariableComparison = () => {
   );
 
   return (
-    <Stack direction="row" justifyContent="center" flexWrap="wrap" gap={2}>
+    <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="center">
       <VirtualizedVariable rowHeights={rowHeights} />
       <WindowVariable rowHeights={rowHeights} />
       <TanstackVariable rowHeights={rowHeights} />

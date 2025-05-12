@@ -18,10 +18,10 @@ const rowRenderer: ListRowRenderer = ({ key, index, style }) => (
 );
 
 export const VirtualizedScroll = () => {
+  const { itemCount } = useItemCountContext();
+
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
-
-  const { itemCount } = useItemCountContext();
 
   return (
     <ScrollContainer
@@ -49,7 +49,7 @@ export const VirtualizedScroll = () => {
         rowCount={itemCount}
         rowRenderer={rowRenderer}
         scrollTop={scrollTop}
-        style={{ overflowY: "hidden", borderRadius: "3px" }} // prevent user scroll but allow programmatic scroll
+        style={{ borderRadius: "3px", overflowY: "hidden" }} // prevent user scroll but allow programmatic scroll
         width={VIRTUALIZED_CONTAINER_WIDTH}
       />
     </ScrollContainer>

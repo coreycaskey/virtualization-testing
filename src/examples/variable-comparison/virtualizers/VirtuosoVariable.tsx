@@ -42,9 +42,9 @@ export const VirtuosoVariable = ({ rowHeights }: VirtuosoVariableProps) => {
         // overscan is based on pixels rather than count
         overscan={OVERSCAN_COUNT * avgRowHeight}
         style={{
+          borderRadius: "3px",
           height: VIRTUALIZED_CONTAINER_HEIGHT,
           width: VIRTUALIZED_CONTAINER_WIDTH,
-          borderRadius: "3px",
         }}
         totalCount={rowHeights.length}
       />

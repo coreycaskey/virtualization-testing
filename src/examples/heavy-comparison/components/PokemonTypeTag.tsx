@@ -9,11 +9,11 @@ interface PokemonTypeTagProps {
 export const PokemonTypeTag = ({ type }: PokemonTypeTagProps) => {
   return (
     <Box
+      alignItems="center"
+      borderRadius="4px"
       display="flex"
       justifyContent="center"
-      alignItems="center"
       padding="2px"
-      borderRadius="4px"
       sx={{ backgroundColor: POKEMON_TYPE_COLORS[type] }}
     >
       <Typography variant="caption">{type.toUpperCase()}</Typography>

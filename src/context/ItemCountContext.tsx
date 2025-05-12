@@ -1,7 +1,7 @@
 import {
   createContext,
   type PropsWithChildren,
-  useContext,
+  use,
   useMemo,
   useState,
 } from "react";
@@ -28,12 +28,8 @@ export const ItemCountProvider = ({ children }: PropsWithChildren) => {
     [itemCount, setItemCount],
   );
 
-  return (
-    <ItemCountContext.Provider value={value}>
-      {children}
-    </ItemCountContext.Provider>
-  );
+  return <ItemCountContext value={value}>{children}</ItemCountContext>;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useItemCountContext = () => useContext(ItemCountContext);
+export const useItemCountContext = () => use(ItemCountContext);

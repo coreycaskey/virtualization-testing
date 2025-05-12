@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 
 export const HeavyComparison = () => (
   <QueryClientProvider client={queryClient}>
-    <Stack direction="row" justifyContent="center" flexWrap="wrap" gap={2}>
+    <Stack direction="row" flexWrap="wrap" justifyContent="center" gap={2}>
       <VirtualizedHeavy />
       <WindowHeavy />
       <TanstackHeavy />

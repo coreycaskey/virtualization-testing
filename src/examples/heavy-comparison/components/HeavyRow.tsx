@@ -1,4 +1,4 @@
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { VolumeUp } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -21,6 +21,10 @@ interface HeavyRowProps {
   virtualizer: string; // differentiates cache keys for each virtualization approach
 }
 
+// Note: Typically this type of query would be lifted outside the virtualized row
+// and performed at the top-level to fetch data in batches, and fetch later records
+// in a paginated pattern, but it was done this way on purpose to simulate a computationally
+// heavy row
 export const HeavyRow = ({
   isScrolling,
   rowNumber,
@@ -28,9 +32,9 @@ export const HeavyRow = ({
   virtualizer,
 }: HeavyRowProps) => {
   const { data, isLoading } = useQuery({
-    queryKey: [virtualizer, "pokemon", rowNumber],
-    queryFn: () => fetchPokemon(rowNumber),
     enabled: !isScrolling,
+    queryFn: () => fetchPokemon(rowNumber),
+    queryKey: [virtualizer, "pokemon", rowNumber],
   });
 
   let content: ReactNode;
@@ -65,7 +69,7 @@ export const HeavyRow = ({
             }}
             size="small"
           >
-            <VolumeUpIcon fontSize="inherit" />
+            <VolumeUp fontSize="inherit" />
           </IconButton>
         </Box>
       </Stack>
@@ -80,15 +84,15 @@ export const HeavyRow = ({
 
   return (
     <Box
-      display="flex"
-      justifyContent="center"
       alignItems="center"
-      height={VIRTUALIZED_HEAVY_ROW_HEIGHT}
-      padding="5px"
       boxSizing="border-box"
+      display="flex"
+      height={VIRTUALIZED_HEAVY_ROW_HEIGHT}
+      justifyContent="center"
+      padding="5px"
       sx={{
-        ...style,
         backgroundColor: rowNumber % 2 === 0 ? PURPLE_100 : WHITE,
+        ...style,
       }}
     >
       {content}

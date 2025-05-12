@@ -1,6 +1,6 @@
-import "./button.css";
+import "./sample.css";
 
-export interface ButtonProps {
+export interface SampleProps {
   /** Is this the principal call to action on the page? */
   primary?: boolean;
   /** What background color to use */
@@ -14,16 +14,17 @@ export interface ButtonProps {
 }
 
 /** Primary UI component for user interaction */
-export const Button = ({
+export const Sample = ({
   primary = false,
   size = "medium",
   backgroundColor,
   label,
   ...props
-}: ButtonProps) => {
+}: SampleProps) => {
   const mode = primary
     ? "storybook-button--primary"
     : "storybook-button--secondary";
+
   return (
     <button
       type="button"

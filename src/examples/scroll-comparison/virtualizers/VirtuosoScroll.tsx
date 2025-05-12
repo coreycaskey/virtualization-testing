@@ -24,12 +24,12 @@ const rowRenderer = (index: number) => (
 );
 
 export const VirtuosoScroll = () => {
+  const { itemCount } = useItemCountContext();
+
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
   const listRef = useRef<VirtuosoHandle | null>(null);
-
-  const { itemCount } = useItemCountContext();
 
   return (
     <ScrollContainer
@@ -65,10 +65,10 @@ export const VirtuosoScroll = () => {
         overscan={VIRTUALIZED_SIMPLE_ROW_HEIGHT * OVERSCAN_COUNT}
         ref={listRef}
         style={{
-          height: VIRTUALIZED_CONTAINER_HEIGHT,
-          width: VIRTUALIZED_CONTAINER_WIDTH,
-          overflowY: "hidden", // prevent user scroll but allow programmatic scroll
           borderRadius: "3px",
+          height: VIRTUALIZED_CONTAINER_HEIGHT,
+          overflowY: "hidden", // prevent user scroll but allow programmatic scroll
+          width: VIRTUALIZED_CONTAINER_WIDTH,
         }}
         totalCount={itemCount}
       />

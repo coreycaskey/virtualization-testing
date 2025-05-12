@@ -1,12 +1,12 @@
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import { AccordionDetails as MuiAccordionDetails } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { WHITE, PURPLE_900 } from "~/constants";
+import { PURPLE_900, WHITE } from "~/constants";
 
 export const StyledAccordionDetails = styled(MuiAccordionDetails)(
   ({ theme }) => ({
-    padding: theme.spacing(2),
-    borderTop: `1px solid ${WHITE}`,
     backgroundColor: PURPLE_900,
+    borderTop: `1px solid ${WHITE}`,
+    padding: theme.spacing(2),
   }),
 );

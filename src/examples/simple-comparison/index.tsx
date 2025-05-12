@@ -6,7 +6,7 @@ import { VirtuosoSimple } from "./virtualizers/VirtuosoSimple";
 import { WindowSimple } from "./virtualizers/WindowSimple";
 
 export const SimpleComparison = () => (
-  <Stack direction="row" justifyContent="center" flexWrap="wrap" gap={2}>
+  <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="center">
     <VirtualizedSimple />
     <WindowSimple />
     <TanstackSimple />

@@ -56,6 +56,7 @@ export const ScrollProfiler = ({
         <Profiler
           id={profilerId}
           onRender={(_, phase, actualDuration) => {
+            // TODO: verify this
             if (phase !== "mount" && isScrolling) {
               onUpdateProfilerTracker({
                 numUpdates: profilerTracker.current.numUpdates + 1,

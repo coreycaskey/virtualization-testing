@@ -70,7 +70,7 @@ export default tseslint.config(
   // 6. TypeScript-specific settings and overrides
   {
     files: ["**/*.ts", "**/*.tsx"],
-    ...tseslint.configs.recommendedTypeChecked[0], // scope this to only Typescript related files
+    ...tseslint.configs.recommendedTypeChecked[0],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -97,7 +97,7 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-floating-promises": "warn",
       "no-console": ["warn", { allow: ["warn", "error"] }],
-      "no-unused-vars": "off", // optional, only if avoiding ESLint conflicts
+      "no-unused-vars": "off",
     },
     settings: {
       react: { version: "detect" },
@@ -111,7 +111,7 @@ export default tseslint.config(
             "./tsconfig.node.json",
             "./tsconfig.storybook.json",
           ],
-          alwaysTryTypes: true, // optional, but helps with index files
+          alwaysTryTypes: true,
         },
       },
     },
@@ -123,8 +123,8 @@ export default tseslint.config(
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest, // or use `globals.mocha` if using Mocha instead
-        ...globals.browser, // optional if you test in a browser-like env (e.g. jsdom)
+        ...globals.jest,
+        ...globals.browser,
       },
       parserOptions: {
         project: ["./tsconfig.node.json"],
@@ -132,7 +132,7 @@ export default tseslint.config(
       },
     },
     rules: {
-      "no-console": "off", // allow console logs in test or config files
+      "no-console": "off",
     },
   },
 
