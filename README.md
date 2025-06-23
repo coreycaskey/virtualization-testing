@@ -39,7 +39,6 @@ Each library is tested in comparable scenarios to showcase strengths, weaknesses
 - **Framework**: React
 - **TypeScript**: For static type checking.
 - **Vite**: Build tool for faster development.
-- **Storybook**: UI component explorer.
 - **ESLint & Prettier**: Code linting and formatting.
 
 ## Getting Started
@@ -92,26 +91,9 @@ yarn dev
 
 Open your browser and navigate to `http://localhost:5173` to view the application.
 
-### Running Storybook
-
-To explore UI components in isolation:
-
-Using npm:
-
-```bash
-npm run storybook
-```
-
-Using Yarn:
-
-```bash
-yarn storybook
-```
-
 ## Project Structure
 
 - **`src/`**: Main application source code.
-- **`.storybook/`**: Configuration for Storybook.
 - **`index.html`**: Main HTML file.
 - **`vite.config.ts`**: Vite configuration.
 - **`tsconfig*.json`**: TypeScript configurations.

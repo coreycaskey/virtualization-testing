@@ -5,7 +5,6 @@ import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import storybook from "eslint-plugin-storybook";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -16,7 +15,6 @@ export default tseslint.config(
       "**/.github",
       "**/.husky",
       "**/.licenses",
-      "**/.storybook/build",
       "**/.vscode",
       "**/build",
       "**/node_modules",
@@ -45,7 +43,7 @@ export default tseslint.config(
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: ["./tsconfig.app.json", "./tsconfig.storybook.json"],
+        project: ["./tsconfig.app.json"],
         tsconfigRootDir: import.meta.dirname,
         ecmaFeatures: { jsx: true },
       },
@@ -74,11 +72,7 @@ export default tseslint.config(
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: [
-          "./tsconfig.app.json",
-          "./tsconfig.node.json",
-          "./tsconfig.storybook.json",
-        ],
+        project: ["./tsconfig.app.json", "./tsconfig.node.json"],
         tsconfigRootDir: import.meta.dirname,
         ecmaFeatures: { jsx: true },
       },
@@ -106,11 +100,7 @@ export default tseslint.config(
       },
       "import/resolver": {
         typescript: {
-          project: [
-            "./tsconfig.app.json",
-            "./tsconfig.node.json",
-            "./tsconfig.storybook.json",
-          ],
+          project: ["./tsconfig.app.json", "./tsconfig.node.json"],
           alwaysTryTypes: true,
         },
       },
@@ -133,25 +123,6 @@ export default tseslint.config(
     },
     rules: {
       "no-console": "off",
-    },
-  },
-
-  // 8. Storybook rules (spread plugin config)
-  storybook.configs["flat/recommended"],
-
-  // 9. Storybook file-specific parser options
-  {
-    files: [
-      "src/.stories/**/*.ts",
-      "src/.stories/**/*.tsx",
-      "src/**/*.stories.@(ts|tsx)",
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.storybook.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      globals: globals.browser,
     },
   },
 );
