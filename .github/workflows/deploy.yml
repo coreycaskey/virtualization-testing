@@ -35,14 +35,7 @@ jobs:
 
       # Choose which build to run
       - name: Build (normal or profiling)
-        run: |
-          if [ "${{ github.event.inputs.profiling }}" = "true" ]; then
-            echo "🔧 Building with React Profiler (profiling mode)"
-            npm run build:profile
-          else
-            echo "🚀 Building normal production"
-            npm run build
-          fi
+        run: npm run build
 
       # SPA fallback (BrowserRouter)
       - run: cp build/index.html build/404.html

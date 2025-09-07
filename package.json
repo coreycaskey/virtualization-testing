@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc -b && vite build",
-    "build:profile": "tsc -b && vite build --mode profiling",
+    "build": "tsc -b && vite build --mode profiling",
     "bundle-size": "npx vite-bundle-visualizer",
     "clean": "rm -rf build node_modules .turbo .vite",
     "clean-deps": "npx depcheck",

@@ -6,8 +6,8 @@ import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
-export default defineConfig(({ mode }) => ({
-  base: "/virtualization-testing",
+export default defineConfig({
+  base: "/virtualization-testing/",
   plugins: [
     react(),
     tsconfigPaths(),
@@ -16,31 +16,25 @@ export default defineConfig(({ mode }) => ({
     visualizer({ open: false }),
   ],
   build: {
-    sourcemap: mode === "profiling",
+    sourcemap: true,
     target: "es2017",
     outDir: "build",
     assetsInlineLimit: 4096,
     cssCodeSplit: true,
-    rollupOptions: {
-      output: { manualChunks: { react: ["react", "react-dom"] } },
-    },
+    // rollupOptions: {
+    //   output: { manualChunks: { react: ["react", "react-dom/profiling"] } },
+    // },
   },
-  define: {
-    "process.env": {},
-  },
+  // define: {
+  //   "process.env": {},
+  // },
   optimizeDeps: { esbuildOptions: { plugins: [fixReactVirtualized] } },
   resolve: {
     alias: {
       "~": "src",
-      ...(mode === "profiling"
-        ? {
-            // Use the production profiling build of React
-            "react-dom/client": "react-dom/profiling",
-            "react-dom": "react-dom/profiling",
-            // Optional (legacy interaction tracing APIs)
-            "scheduler/tracing": "scheduler/tracing-profiling",
-          }
-        : {}),
+      "react-dom/client": "react-dom/profiling",
+      // Optional (legacy interaction tracing APIs)
+      "scheduler/tracing": "scheduler/tracing-profiling",
     },
   },
   server: { open: true },
@@ -55,4 +49,4 @@ export default defineConfig(({ mode }) => ({
       exclude: ["**/*.d.ts", "**/test-utils/**", "src/setupTests.ts"],
     },
   },
-}));
+});
