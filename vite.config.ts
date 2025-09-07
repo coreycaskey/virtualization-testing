@@ -7,6 +7,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  base: "/virtualization-testing",
   plugins: [
     react(),
     tsconfigPaths(),
