@@ -6,7 +6,7 @@ import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base: "/virtualization-testing",
   plugins: [
     react(),
@@ -16,7 +16,7 @@ export default defineConfig({
     visualizer({ open: false }),
   ],
   build: {
-    sourcemap: false,
+    sourcemap: mode === "profiling",
     target: "es2017",
     outDir: "build",
     assetsInlineLimit: 4096,
@@ -29,7 +29,20 @@ export default defineConfig({
     "process.env": {},
   },
   optimizeDeps: { esbuildOptions: { plugins: [fixReactVirtualized] } },
-  resolve: { alias: { "~": "src" } },
+  resolve: {
+    alias: {
+      "~": "src",
+      ...(mode === "profiling"
+        ? {
+            // Use the production profiling build of React
+            "react-dom/client": "react-dom/profiling",
+            "react-dom": "react-dom/profiling",
+            // Optional (legacy interaction tracing APIs)
+            "scheduler/tracing": "scheduler/tracing-profiling",
+          }
+        : {}),
+    },
+  },
   server: { open: true },
   test: {
     environment: "jsdom",
@@ -42,4 +55,4 @@ export default defineConfig({
       exclude: ["**/*.d.ts", "**/test-utils/**", "src/setupTests.ts"],
     },
   },
-});
+}));

@@ -8,7 +8,7 @@ export type AccordionStates = {
 };
 
 export const Examples = {
-  HEAVY: "HEAVY",
+  // HEAVY: "HEAVY",
   SCROLL: "SCROLL",
   SIMPLE: "SIMPLE",
   VARIABLE: "VARIABLE",

@@ -20,7 +20,7 @@ export const MountProfiler = ({
           <Typography variant="h5">{title}</Typography>
 
           <Typography color="text.secondary" variant="body2">
-            Time: {time}
+            Mount Time: <span style={{ fontWeight: "bold" }}>{time}</span>
           </Typography>
         </Stack>
 
