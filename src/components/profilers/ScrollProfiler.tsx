@@ -19,6 +19,8 @@ interface ScrollProfilerProps extends PropsWithChildren {
   profilerId: string;
   profilerTracker: RefObject<ProfilerTracker>;
   setAvgScroll: (avgScroll: number) => void;
+  setTotalUpdates: (totalUpdates: number) => void;
+  totalUpdates: number;
 }
 
 export const ScrollProfiler = ({
@@ -30,6 +32,8 @@ export const ScrollProfiler = ({
   profilerId,
   profilerTracker,
   setAvgScroll,
+  setTotalUpdates,
+  totalUpdates,
 }: ScrollProfilerProps) => {
   const prevIsScrolling = usePrevious(isScrolling);
 
@@ -39,8 +43,15 @@ export const ScrollProfiler = ({
     if (!isScrolling && prevIsScrolling) {
       // handle potential divide by 0
       setAvgScroll(totalTime / (numUpdates || 1));
+      setTotalUpdates(numUpdates);
     }
-  }, [isScrolling, prevIsScrolling, profilerTracker, setAvgScroll]);
+  }, [
+    isScrolling,
+    prevIsScrolling,
+    profilerTracker,
+    setAvgScroll,
+    setTotalUpdates,
+  ]);
 
   return (
     <Card>
@@ -49,15 +60,22 @@ export const ScrollProfiler = ({
           <Typography variant="h5">{cardTitle}</Typography>
 
           <Typography variant="body2" color="text.secondary">
-            Scroll Avg: {`${avgScroll.toFixed(4)} ms`}
+            Total Render Updates:{" "}
+            <span style={{ fontWeight: "bold" }}>{totalUpdates}</span>
+          </Typography>
+
+          <Typography variant="body2" color="text.secondary">
+            Update Avg:{" "}
+            <span
+              style={{ fontWeight: "bold" }}
+            >{`${avgScroll.toFixed(4)} ms`}</span>
           </Typography>
         </Stack>
 
         <Profiler
           id={profilerId}
           onRender={(_, phase, actualDuration) => {
-            // TODO: verify this
-            if (phase !== "mount" && isScrolling) {
+            if (phase === "update" && isScrolling) {
               onUpdateProfilerTracker({
                 numUpdates: profilerTracker.current.numUpdates + 1,
                 totalTime: profilerTracker.current.totalTime + actualDuration,

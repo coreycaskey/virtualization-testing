@@ -6,7 +6,6 @@ import { StyledAccordionDetails } from "~/components/accordion/StyledAccordionDe
 import { StyledAccordionSummary } from "~/components/accordion/StyledAccordionSummary";
 import { useItemCountContext } from "~/context/ItemCountContext";
 import { type AccordionStates } from "~/types";
-import { HeavyComparison } from "./heavy-comparison";
 import { ScrollComparison } from "./scroll-comparison";
 import { SimpleComparison } from "./simple-comparison";
 import { VariableComparison } from "./variable-comparison";
@@ -17,7 +16,12 @@ interface ExamplesContainerProps {
 }
 
 export const ExamplesContainer = ({
-  accordionStates: { HEAVY, SCROLL, SIMPLE, VARIABLE },
+  accordionStates: {
+    // HEAVY,
+    SCROLL,
+    SIMPLE,
+    VARIABLE,
+  },
   setAccordionStates,
 }: ExamplesContainerProps) => {
   const { itemCount } = useItemCountContext();
@@ -42,7 +46,7 @@ export const ExamplesContainer = ({
         </StyledAccordionDetails>
       </StyledAccordion>
 
-      <StyledAccordion
+      {/* <StyledAccordion
         expanded={HEAVY}
         onChange={(_, expanded) =>
           setAccordionStates((prev) => ({ ...prev, HEAVY: expanded }))
@@ -58,7 +62,7 @@ export const ExamplesContainer = ({
         <StyledAccordionDetails>
           {HEAVY ? <HeavyComparison /> : <CircularProgress />}
         </StyledAccordionDetails>
-      </StyledAccordion>
+      </StyledAccordion> */}
 
       <StyledAccordion
         expanded={VARIABLE}
