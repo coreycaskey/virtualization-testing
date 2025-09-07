@@ -6,7 +6,7 @@ import { ExamplesContainer } from "./examples/ExamplesContainer";
 import { type AccordionStates } from "./types";
 
 const INITIAL_ACCORDION_STATES: AccordionStates = {
-  HEAVY: false,
+  // HEAVY: false,
   SCROLL: false,
   SIMPLE: false,
   VARIABLE: false,

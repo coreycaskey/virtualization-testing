@@ -26,6 +26,7 @@ export const ScrollContainer = ({
   onStartScroll,
   profilerId,
 }: ScrollContainerProps) => {
+  const [totalUpdates, setTotalUpdates] = useState(0);
   const [avgScroll, setAvgScroll] = useState(0);
 
   const profilerTracker = useRef(INITIAL_PROFILER_TRACKER);
@@ -47,6 +48,8 @@ export const ScrollContainer = ({
         profilerTracker={profilerTracker}
         onUpdateProfilerTracker={handleUpdateProfilerTracker}
         setAvgScroll={setAvgScroll}
+        setTotalUpdates={setTotalUpdates}
+        totalUpdates={totalUpdates}
       >
         {children}
       </ScrollProfiler>
@@ -54,6 +57,7 @@ export const ScrollContainer = ({
       <ButtonContainer
         onReset={() => {
           onReset();
+          setTotalUpdates(0);
           setAvgScroll(0);
           profilerTracker.current = INITIAL_PROFILER_TRACKER;
         }}
